@@ -28,6 +28,39 @@ async def add_material_frame(message: Message, state: FSMContext):
 async def add_colour_material_frame(message: Message, state: FSMContext):
     await state.update_data(client_colour_material_frame_state=message.text)
     await message.reply("Хорошо, из какого материала хотите сделать обивку?")
+    await CustomerState.client_material_casing_state.set()
+
+@dp.message_handler(state=CustomerState.client_material_casing_state)
+async def add_casing_material_type(message: Message, state: FSMContext):
+    await state.update_data(client_material_casing_state=message.text)
+    await message.reply("Хорошо, из какого материала хотите сделать покрытие?")
     await CustomerState.client_type_material_cover_state.set()
 
+@dp.message_handler(state=CustomerState.client_type_material_cover_state)
+async def add_cover_material_type(message: Message, state: FSMContext):
+    await state.update_data(client_type_material_cover_state=message.text)
+    await message.reply("Хорошо, какого цвета должен быть материал?")
+    await CustomerState.client_colour_material_cover_state.set()
+
+@dp.message_handler(state=CustomerState.client_colour_material_cover_state)
+async def add_cover_material_colour(message: Message, state: FSMContext):
+    await state.update_data(client_colour_material_cover_state=message.text)
+    await message.reply("Хорошо, из какой страны должен быть материал?")
+    await CustomerState.client_country_state.set()
+
+@dp.message_handler(state=CustomerState.client_country_state)
+async def add_country(message: Message, state: FSMContext):
+    await state.update_data(client_country_state=message.text)
+    await message.reply("Хорошо, ваш заказ принят.")
+async def send_order(message: Message, state: FSMContext):
+    async with state.proxy() as data:
+        await message.answer(data)
+
+@dp.message_handler(Text(COMMAND["See assortment"]))
+async def watch_content(message: Message):
+    await message.answer("На данный момент, эта функция дорабатывается.")
+
+@dp.message_handler(Text(COMMAND["See specials"]))
+async def watch_content(message: Message):
+    await message.answer("На данный момент, эта функция дорабатывается.")
 

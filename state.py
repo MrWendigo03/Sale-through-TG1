@@ -16,6 +16,6 @@ class CustomerState(StatesGroup):  # Клиентская часть
     client_material_frame_state = State()  # Материал каркаса +
     client_colour_material_frame_state = State()  # Цвет каркаса +
     client_material_casing_state = State()  # Материал обивки +
-    client_type_material_cover_state = State()  # Материал чехла
-    client_colour_material_cover_state = State()  # Цвет чехла
-    client_country_state = State()
+    client_type_material_cover_state = State()  # Материал чехла +
+    client_colour_material_cover_state = State()  # Цвет чехла +
+    client_country_state = State()  # +

@@ -11,4 +11,4 @@ administrator_keys_list = ReplyKeyboardMarkup([
 
 user_keys_list = ReplyKeyboardMarkup([
     [WATCH_ASSORTMENT, MAKE_ORDER, SEE_SPECIALS]
-])
+], resize_keyboard=True)
