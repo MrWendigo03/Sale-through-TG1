@@ -9,6 +9,8 @@ class AdminState(StatesGroup):
     add_cover_colour = State()  # +
     add_country_producer = State()
     add_type = State()  # +
+    add_special_sale = State()
+    delete_special_sale = State()
 
 
 class CustomerState(StatesGroup):  # Клиентская часть
@@ -19,3 +21,5 @@ class CustomerState(StatesGroup):  # Клиентская часть
     client_type_material_cover_state = State()  # Материал чехла +
     client_colour_material_cover_state = State()  # Цвет чехла +
     client_country_state = State()  # +
+    see_specials = State()
+    see_assortment = State()

@@ -86,3 +86,25 @@ async def add_type(message: Message, state: FSMContext):
     await state.update_data(add_type=message.text)
     await message.reply("Добавлено.")
     await state.finish()
+
+@dp.message_handler(Text(COMMANDS["Add special sales"]), TrueAdmin())
+async def add_type(message: Message):
+    await message.reply("Хорошо, какую акцию вы хотите добавить?")
+    await AdminState.add_type.set()
+
+@dp.message_handler(TrueAdmin(), state=AdminState.add_type)
+async def add_type(message: Message, state: FSMContext):
+    await state.update_data(add_type=message.text)
+    await message.reply("Добавлено.")
+    await state.finish()
+
+@dp.message_handler(Text(COMMANDS["Delete special sales"]), TrueAdmin())
+async def add_type(message: Message):
+    await message.reply("Хорошо, какую акцию вы хотите добавить?")
+    await AdminState.add_type.set()
+
+@dp.message_handler(TrueAdmin(), state=AdminState.add_type)
+async def add_type(message: Message, state: FSMContext):
+    await state.update_data(add_type=message.text)
+    await message.reply("Удалено.")
+    await state.finish()
