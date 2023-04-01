@@ -58,7 +58,7 @@ async def send_order(message: Message, state: FSMContext):
 
 @dp.message_handler(Text(COMMAND["See assortment"]))
 async def watch_content(message: Message):
-    await message.answer("")
+    await message.answer("Хорошо")
     await CustomerState.see_assortment.set()
 
 @dp.message_handler(state=CustomerState.see_assortment)
