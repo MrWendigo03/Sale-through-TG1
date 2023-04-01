@@ -3,8 +3,8 @@ from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 
 from bot import dp
-from commands import COMMAND
-from state import CustomerState
+from KeyBoard.commands import COMMAND
+from states.state import CustomerState
 
 
 @dp.message_handler(Text(COMMAND["Make order"]))

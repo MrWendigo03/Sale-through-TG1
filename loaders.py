@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from configs import BOT_TOKEN
-from filters import TrueAdmin
+from filters.filters import TrueAdmin
 
 
 bot = Bot(BOT_TOKEN)

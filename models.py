@@ -18,37 +18,25 @@ class DataBase:
     DB_USER: str
 
 
-class FrameMaterials(Base):
-    __tablename__ = "FrameMaterials"
+class Frame(Base):
+    __tablename__ = "Frame"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String(64), unique=True, nullable=False)
+    name_frame_material = Column(String(64), unique=True, nullable=False)
+    name_frame_colour = Column(String(16), unique=True, nullable=False)
 
     def __str__(self):
-        return f"Materials: {self.id}"
+        return f"Frame: {self.id}"
 
     def __repr__(self):
-        return f"Materials: {self.id}"
-
-
-class FrameColour(Base):
-    __tablename__ = "FrameColour"
-
-    id = Column(Integer(), primary_key=True)
-    name = Column(String(16), unique=True, nullable=False)
-
-    def __str__(self):
-        return f"CasingMaterials: {self.id}"
-
-    def __repr__(self):
-        return f"CasingMaterials: {self.id}"
+        return f"Frame: {self.id}"
 
 
 class CasingMaterials(Base):
     __tablename__ = "CasingMaterials"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String(32), unique=True, nullable=False)
+    name_casing_material = Column(String(32), unique=True, nullable=False)
 
     def __str__(self):
         return f"CasingMaterials: {self.id}"
@@ -57,30 +45,18 @@ class CasingMaterials(Base):
         return f"CasingMaterials: {self.id}"
 
 
-class CoverMaterials(Base):
-    __tablename__ = "CoverMaterials"
+class Cover(Base):
+    __tablename__ = "Cover"
 
     id = Column(Integer(), primary_key=True)
-    name = Column(String(32), unique=True, nullable=False)
+    name_cover_material = Column(String(32), unique=True, nullable=False)
+    name_cover_colour = Column(String(16), unique=True, nullable=False)
 
     def __str__(self):
-        return f"CoverMaterials: {self.id}"
+        return f"Cover: {self.id}"
 
     def __repr__(self):
-        return f"CoverMaterials: {self.id}"
-
-
-class CoverColour(Base):
-    __tablename__ = "CoverColour"
-
-    id = Column(Integer(), primary_key=True)
-    name = Column(String(16), unique=True, nullable=False)
-
-    def __str__(self):
-        return f"CoverColour: {self.id}"
-
-    def __repr__(self):
-        return f"CoverColour: {self.id}"
+        return f"Cover: {self.id}"
 
 
 class Furniture(Base):
@@ -100,18 +76,18 @@ class Order(Base):
     __tablename__ = "Order"
 
     id = Column(Integer(), primary_key=True)
-    name_frame_material = Column(ForeignKey("FrameMaterials.id"))
-    name_frame_colour = Column(ForeignKey("FrameColour.id"))
-    name_casing = Column(ForeignKey("CasingMaterials.id"))
-    name_cover_material = Column(ForeignKey("CoverMaterials.id"))
-    name_cover_colour = Column(ForeignKey("CoverMaterials.id"))
+    name_frame_material = Column(ForeignKey("Frame.id"))
+    name_frame_colour = Column(ForeignKey("Frame.id"))
+    name_casing_material = Column(ForeignKey("CasingMaterials.id"))
+    name_cover_material = Column(ForeignKey("Cover.id"))
+    name_cover_colour = Column(ForeignKey("Cover.id"))
     furniture = Column(ForeignKey("Furniture"))
 
     def __str__(self):
-        return f"Album: {self.id}"
+        return f"Order: {self.id}"
 
     def __repr__(self):
-        return f"Album: {self.id}"
+        return f"Order: {self.id}"
 
 
 class BaseModel:

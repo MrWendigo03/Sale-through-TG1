@@ -3,9 +3,9 @@ from aiogram.types import Message
 from aiogram.dispatcher import FSMContext
 
 from bot import dp
-from commands import COMMANDS
-from filters import TrueAdmin
-from state import AdminState
+from KeyBoard.commands import COMMANDS
+from filters.filters import TrueAdmin
+from states.state import AdminState
 
 dp.filters_factory.bind(TrueAdmin)
 @dp.message_handler(commands=['cancel'], state='*')

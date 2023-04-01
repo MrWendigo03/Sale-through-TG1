@@ -1,6 +1,7 @@
 from aiogram.types import KeyboardButton
 
-from commands import COMMANDS, COMMAND
+from .commands import COMMANDS, COMMAND
+
 
 ADD_FRAME_MATERIAL = KeyboardButton(COMMANDS["Add frame material"])
 ADD_FRAME_COLOUR = KeyboardButton(COMMANDS["Add frame colour"])
