@@ -4,6 +4,8 @@ from aiogram.dispatcher import FSMContext
 
 from bot import dp
 from KeyBoard.commands import COMMAND
+from configs import Session
+from models import Order
 from states.state import CustomerState
 
 
@@ -52,9 +54,11 @@ async def add_cover_material_colour(message: Message, state: FSMContext):
 async def add_country(message: Message, state: FSMContext):
     await state.update_data(client_country_state=message.text)
     await message.answer("Хорошо, ваш заказ принят.")
-async def send_order(message: Message, state: FSMContext):
     async with state.proxy() as data:
         await message.answer(data)
+    await state.finish()
+    with Session() as session:
+        order = Order(add_type=add_material_frame, add_colour_material_frame=a)
 
 @dp.message_handler(Text(COMMAND["See assortment"]))
 async def watch_content(message: Message):

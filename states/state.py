@@ -10,6 +10,7 @@ class AdminState(StatesGroup):
     add_country_producer = State()
     add_type = State()  # +
     add_special_sale = State()
+    add_description = State()
     delete_special_sale = State()
 
 
