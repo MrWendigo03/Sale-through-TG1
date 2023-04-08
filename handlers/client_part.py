@@ -57,8 +57,8 @@ async def add_country(message: Message, state: FSMContext):
     async with state.proxy() as data:
         await message.answer(data)
     await state.finish()
-    with Session() as session:
-        order = Order(add_type=add_material_frame, add_colour_material_frame=a)
+    # with Session() as session:
+    #     order = Order(add_type=cli, add_colour_material_frame=a)
 
 @dp.message_handler(Text(COMMAND["See assortment"]))
 async def watch_content(message: Message):

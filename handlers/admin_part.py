@@ -10,6 +10,7 @@ from models import FrameInfo, CasingMaterial, CoverInfo, CountryInfo, Sales
 from states.state import AdminState
 
 dp.filters_factory.bind(TrueAdmin)
+
 @dp.message_handler(commands=['cancel'], state='*')
 async def cancel(message: Message, state: FSMContext):
     if not await state.get_state() is None:
@@ -162,12 +163,15 @@ async def add_description(message: Message, state: FSMContext):
         description = data["description"]
     await state.reset_state(True)
     await state.finish()
-    with Session()as session:
-        spec_sale = Sales(name_of_sale=name_of_sale)
-        descr = Sales(description=description)
-        spec_sale.commit()
-        descr.commit()
-        session.commit()
+    if message not in Sales:
+        with Session()as session:
+            spec_sale = Sales(name_of_sale=name_of_sale)
+            descr = Sales(description=description)
+            spec_sale.commit()
+            descr.commit()
+            session.commit()
+    else:
+        await message.answer("Акции уже существует!")
     await message.reply("Скидка/акция добавлена.")
 
 @dp.message_handler(Text(COMMANDS["Delete special sales"]), TrueAdmin())
@@ -182,8 +186,11 @@ async def add_type(message: Message, state: FSMContext):
         delete_sale = data["delete_special_sales"]
     await state.reset_state(True)
     await state.finish()
-    with Session()as session:
-        spec_sale = Sales(country_name=delete_sale)
-        spec_sale.delete()
-        session.delete()
+    if message in Sales:
+        with Session()as session:
+            spec_sale = Sales(country_name=delete_sale)
+            spec_sale.delete()
+            session.delete()
+    else:
+        await message.answer("Нет такой акции!")
     await message.reply("Скидка/акция удалена.")

@@ -1,12 +1,6 @@
-from typing import Any
-
-import sqlalchemy as db
-
 from dataclasses import dataclass
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import Session
 
-from models.order import Order
 from configs import Base, engine
 
 
@@ -83,3 +77,7 @@ class CountryInfo(Base):
 
     def __repr__(self):
         return f"Countries: {self.id}"
+
+
+if __name__ == "__main__":
+    Base.metadata.create_all(engine)
